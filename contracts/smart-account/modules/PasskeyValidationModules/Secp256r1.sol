@@ -52,7 +52,10 @@ library Secp256r1 {
         uint256 s,
         uint256 e
     ) internal view returns (bool) {
-        if (r >= NN || s >= NN) {
+           //test potential null signature, as spoted in https://github.com/itsobvioustech/aa-passkeys-wallet/blob/6e449fd05bf127e6447c5603e454c900720298fd/src/Secp256r1.sol#L46
+        if (r==0 ||r >= NN ||s==0|| s >= NN) {
+            return false;
+        }
             return false;
         }
 
@@ -66,7 +69,8 @@ library Secp256r1 {
         uint256 s,
         uint256 e
     ) internal view returns (bool) {
-        if (r >= NN || s >= NN) {
+           //test potential null signature, as spoted in https://github.com/itsobvioustech/aa-passkeys-wallet/blob/6e449fd05bf127e6447c5603e454c900720298fd/src/Secp256r1.sol#L46
+        if (r==0 ||r >= NN ||s==0|| s >= NN) {
             return false;
         }
 
